@@ -1,22 +1,22 @@
-import { useState } from 'react';
 import './FilterSidebar.css';
 
 const ROOM_TYPES = ['Royal Suites', 'Executive Rooms', 'Garden Villas', 'Penthouse'];
 const AMENITIES = ['Private Pool', 'Ocean View', 'Butler Service', 'Spa Access'];
 
-export default function FilterSidebar() {
-  const [price, setPrice] = useState(1200);
-  const [types, setTypes] = useState({ 'Royal Suites': true });
-  const [amenities, setAmenities] = useState({ 'Butler Service': true });
+export const DEFAULT_FILTERS = {
+  price: 2500,
+  types: {},
+  amenities: {},
+};
 
-  const toggle = (state, setState, key) =>
-    setState({ ...state, [key]: !state[key] });
+export default function FilterSidebar({ value, onChange }) {
+  const { price, types, amenities } = value;
 
-  const reset = () => {
-    setPrice(1200);
-    setTypes({});
-    setAmenities({});
-  };
+  const update = (patch) => onChange({ ...value, ...patch });
+  const toggle = (key, group) =>
+    update({ [group]: { ...value[group], [key]: !value[group][key] } });
+
+  const reset = () => onChange(DEFAULT_FILTERS);
 
   return (
     <aside className="filters">
@@ -26,14 +26,15 @@ export default function FilterSidebar() {
           <input
             type="range"
             min="200"
-            max="2500"
+            max="3600"
+            step="50"
             value={price}
-            onChange={(e) => setPrice(Number(e.target.value))}
+            onChange={(e) => update({ price: Number(e.target.value) })}
             className="price-slider"
           />
           <div className="price-range-labels">
             <span>$200</span>
-            <span>$2,500+</span>
+            <span>Up to ${price.toLocaleString()}</span>
           </div>
         </div>
 
@@ -44,7 +45,7 @@ export default function FilterSidebar() {
               <input
                 type="checkbox"
                 checked={!!types[t]}
-                onChange={() => toggle(types, setTypes, t)}
+                onChange={() => toggle(t, 'types')}
               />
               <span>{t}</span>
             </label>
@@ -58,7 +59,7 @@ export default function FilterSidebar() {
               <input
                 type="checkbox"
                 checked={!!amenities[a]}
-                onChange={() => toggle(amenities, setAmenities, a)}
+                onChange={() => toggle(a, 'amenities')}
               />
               <span>{a}</span>
             </label>

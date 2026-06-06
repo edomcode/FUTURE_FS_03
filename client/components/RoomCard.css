@@ -6,7 +6,9 @@
   display: flex;
   flex-direction: column;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
+.room-card:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; }
 
 .room-card:hover {
   transform: translateY(-3px);

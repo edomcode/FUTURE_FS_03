@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import './RoomCard.css';
 
 const iconMap = {
@@ -22,9 +23,14 @@ const iconMap = {
 };
 
 export default function RoomCard({ room, variant = 'list' }) {
-  const { name, location, image, price, period = '/ night', badge, features = [] } = room;
+  const { id, name, location, image, price, period = '/ night', badge, features = [] } = room;
+  const navigate = useNavigate();
+  const goDetails = () => navigate(`/rooms/${id}`);
+  const goBook = () => navigate(`/rooms/${id}?book=1`);
   return (
-    <article className={`room-card room-card-${variant}`}>
+    <article className={`room-card room-card-${variant}`} onClick={goDetails} role="button" tabIndex={0}
+      onKeyDown={(e) => e.key === 'Enter' && goDetails()}
+    >
       <div className="room-image" style={{ backgroundImage: `url('${image}')` }}>
         {badge && <span className={`room-badge badge-${badge.tone || 'dark'}`}>{badge.label}</span>}
       </div>
@@ -52,9 +58,9 @@ export default function RoomCard({ room, variant = 'list' }) {
           </ul>
         )}
 
-        <div className="room-actions">
-          <button className="btn btn-ghost">View Details</button>
-          {variant === 'list' && <button className="btn btn-dark">Book Now</button>}
+        <div className="room-actions" onClick={(e) => e.stopPropagation()}>
+          <button className="btn btn-ghost" onClick={goDetails}>View Details</button>
+          {variant === 'list' && <button className="btn btn-dark" onClick={goBook}>Book Now</button>}
         </div>
       </div>
     </article>

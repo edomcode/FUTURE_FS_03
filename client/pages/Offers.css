@@ -1,0 +1,154 @@
+.offers {
+  padding: 48px 0 64px;
+}
+
+.offers-header {
+  margin-bottom: 56px;
+  max-width: 700px;
+}
+
+.offers-header .eyebrow {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.offers-header h1 {
+  font-size: clamp(32px, 4.5vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.offers-header p {
+  color: var(--color-muted);
+  margin-top: 14px;
+  font-size: 14px;
+  max-width: 580px;
+}
+
+.offers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.offer-row {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.offer-row.offer-right {
+  direction: rtl;
+}
+.offer-row.offer-right > * {
+  direction: ltr;
+}
+
+.offer-image {
+  width: 100%;
+  aspect-ratio: 5 / 4;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--radius-md);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.offer-body {
+  padding: 0 12px;
+}
+
+.offer-eyebrow {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b85c1a;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.offer-body h2 {
+  font-size: clamp(26px, 3vw, 34px);
+  margin-bottom: 16px;
+}
+
+.offer-body p {
+  color: var(--color-muted);
+  font-size: 14px;
+  line-height: 1.75;
+  margin-bottom: 22px;
+}
+
+.offer-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.offer-bullets li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--color-ink-soft);
+}
+
+.offer-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ink);
+  flex-shrink: 0;
+}
+
+.reserve-btn {
+  padding: 13px 26px;
+}
+
+.bespoke {
+  margin-top: 88px;
+  background: var(--color-surface-alt);
+  border-radius: var(--radius-md);
+  padding: 56px 32px;
+  text-align: center;
+}
+
+.bespoke h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.bespoke p {
+  color: var(--color-muted);
+  max-width: 520px;
+  margin: 0 auto 22px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.bespoke-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-ink);
+  border-bottom: 1px solid var(--color-ink);
+  padding-bottom: 3px;
+}
+
+@media (max-width: 900px) {
+  .offer-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    direction: ltr !important;
+  }
+  .offer-body { padding: 0; }
+  .offers-list { gap: 56px; }
+  .bespoke { padding: 40px 24px; }
+}

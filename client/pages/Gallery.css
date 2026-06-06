@@ -1,0 +1,124 @@
+.gallery {
+  padding: 48px 24px 64px;
+}
+
+.gallery-header {
+  margin-bottom: 24px;
+}
+
+.gallery-header h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+}
+
+.gallery-header p {
+  color: var(--color-muted);
+  max-width: 540px;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.gallery-tabs {
+  display: flex;
+  gap: 28px;
+  border-bottom: 1px solid var(--color-border);
+  padding: 18px 0;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.gallery-tab {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  padding: 4px 0;
+  position: relative;
+  font-weight: 500;
+}
+
+.gallery-tab:hover { color: var(--color-ink); }
+
+.gallery-tab.active {
+  color: var(--color-ink);
+}
+.gallery-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -19px;
+  height: 1px;
+  background: var(--color-ink);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+
+.gi {
+  margin: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--color-surface-alt);
+}
+
+.gi img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gi:hover img {
+  transform: scale(1.03);
+}
+
+.gi-1 { grid-column: span 2; aspect-ratio: 4 / 5; }
+.gi-2 { grid-column: span 4; aspect-ratio: 16 / 10; }
+.gi-3 { grid-column: span 3; aspect-ratio: 4 / 3; }
+
+.gallery-empty {
+  background: #fff;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.gallery-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+.view-more {
+  padding: 14px 36px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+}
+
+.gallery-end {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gi-1, .gi-2, .gi-3 {
+    grid-column: span 1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+  .gi-1, .gi-2, .gi-3 { grid-column: 1 / -1; aspect-ratio: 4 / 3; }
+  .gallery-tabs { gap: 18px; }
+}

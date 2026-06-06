@@ -1,10 +1,21 @@
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Hero from '../components/Hero.jsx';
 import DestinationCard from '../components/DestinationCard.jsx';
 import RoomCard from '../components/RoomCard.jsx';
 import { destinations, featuredRooms } from '../services/mockData.js';
+import { getRooms } from '../services/roomService.js';
 import './Home.css';
 
 export default function Home() {
+  const [featured, setFeatured] = useState(featuredRooms);
+
+  useEffect(() => {
+    getRooms().then((list) => {
+      if (list?.length) setFeatured(list.slice(0, 3));
+    });
+  }, []);
+
   return (
     <main>
       <Hero />
@@ -19,7 +30,7 @@ export default function Home() {
                 where heritage meets modern sophistication.
               </p>
             </div>
-            <a href="#" className="explore-link">Explore All</a>
+            <Link to="/rooms" className="explore-link">Explore All</Link>
           </div>
 
           <div className="destinations-grid">
@@ -40,7 +51,7 @@ export default function Home() {
             <h2>Editor's Choice Rooms</h2>
           </div>
           <div className="featured-grid">
-            {featuredRooms.map((r) => (
+            {featured.map((r) => (
               <RoomCard key={r.id} room={r} variant="featured" />
             ))}
           </div>
