@@ -211,10 +211,7 @@ This project is set up for a **split deployment** model where frontend and backe
 > ```js
 > app.use(
 >   cors({
->     origin: [
->       "https://your-project.vercel.app",
->       "http://localhost:5173"
->     ],
+>     origin: ["https://your-project.vercel.app", "http://localhost:5173"],
 >   }),
 > );
 > ```
