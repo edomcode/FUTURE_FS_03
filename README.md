@@ -173,11 +173,11 @@ Auth header format: `Authorization: Bearer <token>`
 
 ## 🌐 Deployment
 
-### Recommended stack (all free tiers)
+This project is set up for a **split deployment** model where frontend and backend run on separate hosts.
 
 - **Database** → MongoDB Atlas
-- **Backend API** → Render / Railway / Fly.io
-- **Frontend** → Vercel / Netlify
+- **Backend API** → Render
+- **Frontend** → Vercel
 
 ### A. MongoDB Atlas
 
@@ -186,7 +186,7 @@ Auth header format: `Authorization: Bearer <token>`
 3. **Network Access** → add `0.0.0.0/0` (or your deployment provider's IPs)
 4. Copy the **connection string** → set as `MONGO_URI`
 
-### B. Deploy backend (Render example)
+### B. Deploy backend to Render
 
 1. Push the repo to GitHub
 2. On Render → **New +** → **Web Service** → connect repo
@@ -194,38 +194,51 @@ Auth header format: `Authorization: Bearer <token>`
    - **Root Directory**: `server`
    - **Build Command**: `npm install`
    - **Start Command**: `npm start`
-4. **Environment** → add: `MONGO_URI`, `JWT_SECRET`, `PORT=5000`
-5. Deploy. Note the URL (e.g. `https://luxe-api.onrender.com`).
-6. Run the seed once from your local machine (with the prod `MONGO_URI` in `.env`): `npm run seed`.
+4. **Environment Variables**:
+   - `MONGO_URI=mongodb+srv://...`
+   - `JWT_SECRET=your_random_secret_here`
+   - `PORT=5000`
+5. Deploy. Note the API URL (e.g., `https://luxe-api.onrender.com`)
+6. After deployment, seed the database from your local machine:
+   ```bash
+   cd server
+   # Edit .env to use the production MONGO_URI
+   npm run seed
+   ```
 
-> Update `server/server.js` CORS to whitelist your frontend domain:
+> ⚠️ **CORS Setup**: Update `server/server.js` to whitelist your Vercel frontend domain:
 >
 > ```js
 > app.use(
 >   cors({
->     origin: ["https://luxe-reserve.vercel.app", "http://localhost:5173"],
+>     origin: [
+>       "https://your-project.vercel.app",
+>       "http://localhost:5173"
+>     ],
 >   }),
 > );
 > ```
 
-### C. Deploy frontend (Vercel example)
+### C. Deploy frontend to Vercel
 
 1. On Vercel → **Add New Project** → import the same repo
 2. Settings:
    - **Root Directory**: `client`
-   - **Framework Preset**: Vite
+   - **Framework**: Vite
    - **Build Command**: `npm run build`
    - **Output Directory**: `dist`
-3. **Environment Variables**: add `VITE_API_URL=https://luxe-api.onrender.com`
-4. Update `client/services/api.js` to read `import.meta.env.VITE_API_URL` (falls back to `/api` in dev via the Vite proxy).
-5. Deploy.
+3. **Environment Variables**:
+   - `VITE_API_URL=https://luxe-api.onrender.com` (use your actual Render backend URL)
+4. Deploy.
+
+The frontend is pre-configured (`client/services/api.js`) to read `VITE_API_URL` in production and falls back to the local `/api` proxy in development.
 
 ### D. Post-deploy checklist
 
-- [ ] Register a test account on the live site
+- [ ] Register a test account on the live Vercel site
 - [ ] Create a booking and verify it appears under My Bookings
-- [ ] Verify CORS does **not** block requests (check browser console)
-- [ ] Rotate `JWT_SECRET` and Atlas password from any value you used in development
+- [ ] Check browser console for CORS errors
+- [ ] Rotate `JWT_SECRET` and Atlas password from any development credentials
 
 ---
 

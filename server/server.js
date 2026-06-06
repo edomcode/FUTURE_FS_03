@@ -9,7 +9,23 @@ const bookingRoutes = require('./routes/bookingRoutes');
 
 const app = express();
 
-app.use(cors());
+// CORS configuration for split deployment
+const allowedOrigins = [
+  'http://localhost:5173', // Local development
+  process.env.FRONTEND_URL || 'https://your-vercel-domain.vercel.app'
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
+
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
