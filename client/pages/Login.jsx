@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../services/AuthContext.jsx';
+import { describeApiError } from '../services/errorMessage.js';
 import './Auth.css';
 
 export default function Login() {
@@ -17,7 +18,7 @@ export default function Login() {
       await login(form.email, form.password);
       navigate(params.get('next') || '/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Check your credentials.');
+      setError(describeApiError(err, 'Login failed. Check your credentials.'));
     }
   };
 

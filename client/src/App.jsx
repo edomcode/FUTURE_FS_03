@@ -9,6 +9,7 @@ import Register from '../pages/Register.jsx';
 import MyBookings from '../pages/MyBookings.jsx';
 import Gallery from '../pages/Gallery.jsx';
 import Offers from '../pages/Offers.jsx';
+import Experiences from '../pages/Experiences.jsx';
 import { AuthProvider, useAuth } from '../services/AuthContext.jsx';
 
 function RequireAuth({ children }) {
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/rooms/:id" element={<RoomDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/offers" element={<Offers />} />
+        <Route path="/experiences" element={<Experiences />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route

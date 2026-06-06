@@ -22,6 +22,7 @@ export default function Navbar() {
 
         <nav className={`nav-links ${open ? 'open' : ''}`}>
           <NavLink to="/rooms" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'active' : '')}>Destinations</NavLink>
+          <NavLink to="/experiences" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'active' : '')}>Experiences</NavLink>
           <NavLink to="/gallery" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'active' : '')}>Gallery</NavLink>
           <NavLink to="/offers" onClick={() => setOpen(false)} className={({ isActive }) => (isActive ? 'active' : '')}>Offers</NavLink>
           {user && (
