@@ -1,0 +1,84 @@
+.rooms-page { padding: 56px 0 32px; }
+
+.rooms-header {
+  margin-bottom: 40px;
+}
+
+.rooms-header h1 {
+  font-size: 44px;
+  letter-spacing: -0.02em;
+}
+
+.rooms-header p {
+  color: var(--color-muted);
+  max-width: 520px;
+  margin-top: 8px;
+}
+
+.rooms-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.rooms-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.rooms-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.rooms-count {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.rooms-count strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+.sort-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.sort-control select {
+  font-family: inherit;
+  font-size: 13px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 8px 28px 8px 12px;
+  color: var(--color-ink);
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%23111' stroke-width='1.4' d='m1 1 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.rooms-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+}
+
+.rooms-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}
+
+@media (max-width: 900px) {
+  .rooms-layout { grid-template-columns: 1fr; }
+  .rooms-grid { grid-template-columns: 1fr; }
+}

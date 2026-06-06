@@ -1,0 +1,44 @@
+.destination-card {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  min-height: 220px;
+}
+
+.destination-card:hover { transform: translateY(-2px); }
+
+.destination-sm { height: 220px; }
+.destination-lg { height: 460px; }
+
+.destination-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.7));
+}
+
+.destination-content {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  z-index: 1;
+}
+
+.destination-country {
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.destination-name {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  font-weight: 500;
+  color: #fff;
+  margin-top: 6px;
+}

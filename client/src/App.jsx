@@ -1,15 +1,18 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from '../components/Navbar.jsx';
+import Footer from '../components/Footer.jsx';
 import Home from '../pages/Home.jsx';
+import Rooms from '../pages/Rooms.jsx';
 
 export default function App() {
   return (
-    <div>
-      <nav style={{ padding: '1rem', borderBottom: '1px solid #eee' }}>
-        <Link to="/">Home</Link>
-      </nav>
+    <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/rooms" element={<Rooms />} />
       </Routes>
-    </div>
+      <Footer />
+    </>
   );
 }
